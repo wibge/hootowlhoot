@@ -51,6 +51,16 @@ class hootgame:
 		print "".join(spaces)
 		print self.board
 
+class randomowlstrategy:
+	def name(self):
+		return "Random"
+
+	def owlToMove(self, game):
+		while True:
+			n = random.randint(0,5)
+			if game.owls[n] < game.NEST:
+				return n
+
 class lastowlstrategy:
 	def name(self):
 		return "Last"
@@ -87,7 +97,7 @@ def playGame(strategy):
 	return i
 
 def testStrategy(strategy):
-	x = 100000
+	x = 1000
 	totalMoves = 0
 	for i in range(0,x):
 		totalMoves += playGame(strategy)
@@ -96,6 +106,8 @@ def testStrategy(strategy):
 
 testStrategy(lastowlstrategy())
 testStrategy(farthestowlstrategy())
+testStrategy(randomowlstrategy())
+
 
 
 
